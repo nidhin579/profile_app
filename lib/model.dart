@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:async';
+import 'package:flutter/services.dart';
 
 class Model with ChangeNotifier{
   String name='Nidhin';
@@ -14,6 +17,15 @@ class Model with ChangeNotifier{
   File imported;
 
 
+
+  Future<File> getImageFileFromAssets(String path) async {
+    final byteData = await rootBundle.load('assets/$path');
+
+    final file = File('${(await getTemporaryDirectory()).path}/$path');
+    await file.writeAsBytes(byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+
+    return file;
+  }
 
   void update(String n,int p){
     name=n;
@@ -38,6 +50,7 @@ class Model with ChangeNotifier{
     final prefs = await SharedPreferences.getInstance();
     final value = prefs.getString('name')??'';
     value==''?name='Nidhin':name=value;
+    notifyListeners();
   }
 
   saveName(String value) async {
@@ -49,6 +62,7 @@ class Model with ChangeNotifier{
     final prefs = await SharedPreferences.getInstance();
     final value = prefs.getInt('phone')??0;
     value==0?phone=123456789:phone=value;
+    notifyListeners();
   }
 
   saveNum(int value) async {
@@ -63,12 +77,28 @@ class Model with ChangeNotifier{
     if(value!='')
       {
         pic=true;
+        saveStat(true);
       }
+    notifyListeners();
   }
 
   savePic(String value) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('pic',value);
   }
+  saveStat(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setBool('stat',value);
+  }
+
+  readStat() async {
+    final prefs = await SharedPreferences.getInstance();
+    final value = prefs.getBool('stat')??false;
+    value==false?pic=false:pic=value;
+    notifyListeners();
+  }
+
+  getFile() async {File f = await getImageFileFromAssets('images/pro.png');
+  return f;}
 
 }

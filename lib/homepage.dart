@@ -9,6 +9,7 @@ class HomePage extends StatelessWidget {
 
 
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,6 +18,7 @@ class HomePage extends StatelessWidget {
         myModel.readName();
         myModel.readNum();
         myModel.readPic();
+        myModel.readStat();
 
 
           return SafeArea(
