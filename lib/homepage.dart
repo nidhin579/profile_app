@@ -89,6 +89,10 @@ class HomePage extends StatelessWidget {
                         SizedBox(
                           height: 50,
                         ),
+                        Align(alignment: Alignment.bottomLeft,child: Padding(
+                          padding: const EdgeInsets.only(left:45.0),
+                          child: Text('NAME :',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),),
+                        )),
                         Container(
                           height: 40,
                           width: 300,
@@ -109,6 +113,10 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 30,),
+                        Align(alignment: Alignment.bottomLeft,child: Padding(
+                          padding: const EdgeInsets.only(left:45.0),
+                          child: Text('PHONE NO. :',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),),
+                        )),
                         Container(
                           height: 40,
                           width: 300,
