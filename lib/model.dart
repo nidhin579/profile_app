@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:path_provider/path_provider.dart';
+
 import 'dart:async';
-import 'package:flutter/services.dart';
 
 class Model with ChangeNotifier{
   String name='Nidhin';
@@ -19,14 +18,6 @@ class Model with ChangeNotifier{
 
 
 
-  Future<File> getImageFileFromAssets(String path) async {
-    final byteData = await rootBundle.load('assets/$path');
-
-    final file = File('${(await getTemporaryDirectory()).path}/$path');
-    await file.writeAsBytes(byteData.buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
-
-    return file;
-  }
 
   void update(String n,int p){
     name=n;
