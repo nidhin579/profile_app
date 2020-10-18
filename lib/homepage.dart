@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:neumorphic/neumorphic.dart';
 import 'package:profile_app/editpage.dart';
@@ -77,11 +79,11 @@ class HomePage extends StatelessWidget {
                             height: 140,
                             child: Hero(
                                 tag: 'pro',
-                                child: CircleAvatar(
+                                child: myModel.pic!=true?CircleAvatar(
                                   backgroundImage:myModel.pic?FileImage(myModel.imported): AssetImage(myModel.propic),
                                   radius: 135,
                                   backgroundColor: Colors.black,
-                                )),
+                                ):CircleAvatar(radius: 135,backgroundColor: Colors.black,backgroundImage: FileImage(File(myModel.imagepath)),)),
                         );}
                         ),
                         SizedBox(

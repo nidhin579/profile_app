@@ -15,6 +15,7 @@ class Model with ChangeNotifier{
   String propic='images/pro.png';
   bool pic=false;
   File imported;
+  String imagepath;
 
 
 
@@ -73,7 +74,7 @@ class Model with ChangeNotifier{
   readPic() async {
     final prefs = await SharedPreferences.getInstance();
     final value = prefs.getString('pic')??'';
-    value==''?propic='images/pro.png':propic=value;
+    value==''?propic='images/pro.png':imagepath=value;
     if(value!='')
       {
         pic=true;
@@ -98,7 +99,5 @@ class Model with ChangeNotifier{
     notifyListeners();
   }
 
-  getFile() async {File f = await getImageFileFromAssets('images/pro.png');
-  return f;}
 
 }

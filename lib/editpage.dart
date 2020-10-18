@@ -37,21 +37,16 @@ class EditPage extends StatelessWidget {
                             myModel.imagepick();
                             myModel.pic=true;
                           },
-                          child: Hero(
-                              tag: 'pro',
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: <Widget>[
-                                  CircleAvatar(
-                                    backgroundColor: Colors.black,
-                                    backgroundImage:myModel.pic?FileImage(myModel.imported): AssetImage(myModel.propic),
-                                    radius: 70,
+                          child: Container(height:150,
+                            width: 150,
+                            child: Hero(
+                                tag: 'pro',
+                                child: myModel.pic!=true?CircleAvatar(
+                                  backgroundImage:myModel.pic?FileImage(myModel.imported): AssetImage(myModel.propic),
 
-                                  ),
-
-
-                                ],
-                              )),
+                                  backgroundColor: Colors.black,
+                                ):CircleAvatar(radius: 135,backgroundColor: Colors.black,backgroundImage: FileImage(File(myModel.imagepath)),)),
+                          ),
                         )),
                     SizedBox(
                       height: 30,
